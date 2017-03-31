@@ -54,8 +54,10 @@ public class CommentsDataSource {
     public Comment createComment(String comment) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
+        //insert(String table, String nullColumnHack, ContentValues values)
         long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null,
                 values);
+        //INSERT INTO table_comments (null) VALUES (null);
         Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
