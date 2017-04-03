@@ -19,16 +19,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         public static final String TABLE_COMMENTS = "comments"; //This constant will represent table name
         public static final String COLUMN_ID = "_id"; //This constant will represent data put in for the id. this is automatically generated with the SQLite import
         public static final String COLUMN_COMMENT = "comment"; //This constant will represent data put in for table comments
+        public static final String COLUMN_RATINGS = "rating";
 
         private static final String DATABASE_NAME = "commments.db"; //This constant will represent the database name
-        private static final int DATABASE_VERSION = 1; //This constant will represent the database version
+        private static final int DATABASE_VERSION = 2; //This constant will represent the database version
 
 
         //Database creation sql statement
          private static final String DATABASE_CREATE = "create table "
-                + TABLE_COMMENTS + "( " + COLUMN_ID
-                + " integer primary key autoincrement, " + COLUMN_COMMENT
-                + " text not null);";
+                + TABLE_COMMENTS + "( "
+                + COLUMN_ID
+                + " integer primary key autoincrement, "
+                + COLUMN_COMMENT
+                + " text not null, "
+                + COLUMN_RATINGS
+                + " text);";
 
     /**
      *MySQLiteHelper method is the constructor for this class
@@ -59,8 +64,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper{
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(MySQLiteHelper.class.getName(),
-                    "Upgrading database from version " + oldVersion + " to "
-                            + newVersion + ", which will destroy all old data");
+                    "Upgrading database from version "
+                            + oldVersion
+                            + " to "
+                            + newVersion
+                            + ", which will destroy all old data");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
             onCreate(db);
         }

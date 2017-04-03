@@ -9,6 +9,11 @@ package css.hcarlson1.databasepractice;
 public class Comment {
     private long id;
     private String comment;
+    private String rating;
+
+    public String getRating() { return rating; }
+
+    public void setRating(String rating) { this.rating = rating; }
 
     /**
      * getId method will retrieve the id of the entry in the database
@@ -44,6 +49,7 @@ public class Comment {
         this.comment = comment;
     }
 
+
     // Will be used by the ArrayAdapter in the ListView
     /**
      * toString method will retrieve the comment of the entry in the database and return it as a string
@@ -51,6 +57,7 @@ public class Comment {
      */
     @Override
     public String toString() {
-        return comment;
+        String concatString = comment + ", Rating: " + rating;
+        return concatString;
     }
 }
