@@ -106,7 +106,7 @@ public class CommentsDataSource {
      */
     private Comment cursorToComment(Cursor cursor) {
         Comment comment = new Comment();
-        comment.setId(cursor.getLong(0));
+        comment.setId(cursor.getLong(cursor.getColumnIndex(MySQLiteHelper.COLUMN_ID)));
         comment.setComment(cursor.getString(1));
         return comment;
     }
